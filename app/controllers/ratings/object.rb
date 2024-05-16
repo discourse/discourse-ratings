@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class DiscourseRatings::ObjectController < ::Admin::AdminController
+  requires_plugin DiscourseRatings::PLUGIN_NAME
+
   before_action :validate_type
   before_action :validate_object, only: [:create]
 

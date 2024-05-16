@@ -67,27 +67,29 @@ on(:post_recovered) do |post, opts, user|
   end
 end
 
+module ::DiscourseRatings
+  PLUGIN_NAME = "discourse-ratings"
+end
+
 after_initialize do
-  %w[
-    ../lib/ratings/engine.rb
-    ../lib/ratings/cache.rb
-    ../lib/ratings/rating.rb
-    ../lib/ratings/rating_type.rb
-    ../lib/ratings/object.rb
-    ../config/routes.rb
-    ../jobs/regular/destroy_rating_type.rb
-    ../jobs/regular/destroy_ratings.rb
-    ../jobs/regular/migrate_ratings.rb
-    ../app/serializers/ratings/object.rb
-    ../app/serializers/ratings/rating.rb
-    ../app/serializers/ratings/rating_type.rb
-    ../app/controllers/ratings/object.rb
-    ../app/controllers/ratings/rating.rb
-    ../app/controllers/ratings/rating_type.rb
-    ../extensions/post_revisor.rb
-    ../extensions/posts_controller.rb
-    ../extensions/topic.rb
-  ].each { |path| load File.expand_path(path, __FILE__) }
+  require_relative "lib/ratings/engine"
+  require_relative "lib/ratings/cache"
+  require_relative "lib/ratings/rating"
+  require_relative "lib/ratings/rating_type"
+  require_relative "lib/ratings/object"
+  require_relative "config/routes"
+  require_relative "jobs/regular/destroy_rating_type"
+  require_relative "jobs/regular/destroy_ratings"
+  require_relative "jobs/regular/migrate_ratings"
+  require_relative "app/serializers/ratings/object"
+  require_relative "app/serializers/ratings/rating"
+  require_relative "app/serializers/ratings/rating_type"
+  require_relative "app/controllers/ratings/object"
+  require_relative "app/controllers/ratings/rating"
+  require_relative "app/controllers/ratings/rating_type"
+  require_relative "extensions/post_revisor"
+  require_relative "extensions/posts_controller"
+  require_relative "extensions/topic"
 
   ###### Site ######
 
