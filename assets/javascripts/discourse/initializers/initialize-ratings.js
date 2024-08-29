@@ -19,6 +19,7 @@ import { ratingListHtml } from "../lib/rating-utilities";
 const PLUGIN_ID = "discourse-ratings";
 
 export default {
+  dialog: service(),
   name: "initialize-ratings",
   initialize(container) {
     const siteSettings = container.lookup("service:site-settings");
